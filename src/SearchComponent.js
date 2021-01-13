@@ -46,7 +46,6 @@ function SearchComponent({ setListUpdate }) {
   }
 
   function sleepAndVanish() {
-    console.log("Put to vanish!");
     setVanishText(true);
   }
   function handleSearchButton(e) {

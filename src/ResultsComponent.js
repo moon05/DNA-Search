@@ -13,7 +13,7 @@ function ResultsComponent({ status, time, location, name }) {
   const classes = useStyles();
 
   return (
-    <Grid container xs={12} direction="column">
+    <Grid container item xs={12} direction="column">
       <Grid
         item
         container

@@ -37,7 +37,6 @@ function ResultsList({ k }) {
     let result = [];
     for (let i = listLength - 1; i >= 0; i--) {
       const value = listData["" + i];
-      console.log(value);
       result.push(
         <ResultsComponent
           key={i}

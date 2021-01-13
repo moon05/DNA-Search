@@ -10,7 +10,7 @@ function ResultsListHeader() {
   const classes = useStyles();
 
   return (
-    <Grid container xs={12} direction="column">
+    <Grid container item xs={12} direction="column">
       <Grid
         item
         container
