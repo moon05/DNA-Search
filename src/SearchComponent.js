@@ -7,6 +7,11 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import Card from '@material-ui/core/Card';
+import Avatar from '@material-ui/core/Avatar';
+import logo from './logo.svg'
+import gLogo from './ginkgo.svg'
+
 
 const useStyles = makeStyles((theme) => ({
   searchBox: {
@@ -30,6 +35,7 @@ function SearchComponent({ setListUpdate }) {
   const [searchWord, setSearchWord] = useState();
   const [searchResult, setSearchResult] = useState({});
   const [vanishText, setVanishText] = useState(false);
+  const [buttonAvaialabilty, setButtonAvailability] = useState(true);
 
   useEffect(() => {
     window.onload = (e) => {
@@ -37,18 +43,32 @@ function SearchComponent({ setListUpdate }) {
     };
   }, []);
 
+  useEffect(() => {
+    window.onload = (e) => {
+      setVanishText(true);
+    };
+  }, []);
+
+
   const fetchURL = `http://167.99.150.45:3040/dnatoprotein/relax?q=${encodeURIComponent(
     searchWord
   )}`;
 
   function handleTextFieldChange(e) {
+    if (e.target.value === "") {
+      setButtonAvailability(true)
+    } else {
+      setButtonAvailability(false);
+    }
     setSearchWord(e.target.value);
+    
   }
 
   function sleepAndVanish() {
     setVanishText(true);
   }
   function handleSearchButton(e) {
+    setSearchWord("");
     document.getElementById("dna-textField-input").value = "";
     setVanishText(false);
     fetch(fetchURL, { method: "GET" })
@@ -102,13 +122,21 @@ function SearchComponent({ setListUpdate }) {
       alignItems="center"
       className={classes.searchBox}
     >
+    <Card style={{minWidth: 400, minHeight: 350, backgroundColor: "transparent"}}>
+      {/* <img src={gLogo} alt="ginkgo_logo"/> */}
+      <Grid item container style={{marginLeft: 30}}>
+      <Grid item container direction="row" justify="flex-start" alignItems="center">
+        <img src={gLogo} alt="ginkgo" size="large" height="100px"/>
+        <Typography variant="h5" style={{marginLeft: 10}}> Ginkgo Bioworks DNA Search</Typography>
+      </Grid>
       <Grid
         item
         container
-        xs={11}
+        xs={10}
         direction="row"
         alignItems="center"
         justify="center"
+        style={{ marginTop: 10 }}
       >
         <FormControl fullWidth>
           <InputLabel htmlFor="dna-textField-input">
@@ -121,7 +149,7 @@ function SearchComponent({ setListUpdate }) {
       <Grid
         item
         container
-        xs={11}
+        xs={10}
         direction="row"
         alignItems="center"
         justify="center"
@@ -133,6 +161,7 @@ function SearchComponent({ setListUpdate }) {
           type="submit"
           value="Submit"
           size="large"
+          disabled={buttonAvaialabilty}
           onClick={handleSearchButton}
         >
           Search
@@ -141,7 +170,7 @@ function SearchComponent({ setListUpdate }) {
       <Grid
         item
         container
-        xs={11}
+        xs={10}
         justify="center"
         alignItems="center"
         className={vanishText ? classes.stayHidden : classes.show}
@@ -150,12 +179,13 @@ function SearchComponent({ setListUpdate }) {
         {searchResult === 0 ? (
           <Typography>Sorry we couldn't find a match! Try again!</Typography>
         ) : (
-          <Typography>
-            The DNA Sequence you provided was found at location
-            {searchResult.match_loc} in the {searchResult.name}
+          <Typography align="justify">
+            The DNA Sequence you provided was found at location <strong>{searchResult.match_loc}</strong> in the <strong>{searchResult.name}</strong>
           </Typography>
         )}
       </Grid>
+      </Grid>
+      </Card>
     </Grid>
   );
 }
