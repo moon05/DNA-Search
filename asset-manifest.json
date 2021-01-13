@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/DNA-Search/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/DNA-Search/static/js/main.78074ba8.chunk.js",
+    "main.js.map": "/DNA-Search/static/js/main.78074ba8.chunk.js.map",
+    "runtime-main.js": "/DNA-Search/static/js/runtime-main.d4687ea9.js",
+    "runtime-main.js.map": "/DNA-Search/static/js/runtime-main.d4687ea9.js.map",
+    "static/js/2.26d60443.chunk.js": "/DNA-Search/static/js/2.26d60443.chunk.js",
+    "static/js/2.26d60443.chunk.js.map": "/DNA-Search/static/js/2.26d60443.chunk.js.map",
+    "static/js/3.c9bbf986.chunk.js": "/DNA-Search/static/js/3.c9bbf986.chunk.js",
+    "static/js/3.c9bbf986.chunk.js.map": "/DNA-Search/static/js/3.c9bbf986.chunk.js.map",
+    "index.html": "/DNA-Search/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/DNA-Search/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.26d60443.chunk.js.LICENSE.txt": "/DNA-Search/static/js/2.26d60443.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d4687ea9.js",
+    "static/js/2.26d60443.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.78074ba8.chunk.js"
+  ]
+}
