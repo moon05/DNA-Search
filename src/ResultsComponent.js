@@ -69,7 +69,7 @@ function ResultsComponent({ status, time, location, name }) {
           <Typography> {name}</Typography>
         </Grid>
       </Grid>
-      <Divider style={{ marginBottom: 10}}/>
+      <Divider style={{ marginBottom: 10 }} />
     </Grid>
   );
 }

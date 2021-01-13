@@ -1,16 +1,13 @@
 import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
 import Grid from "@material-ui/core/Grid";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import React, { useState, useEffect } from "react";
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-
-
+import React, { useEffect, useState } from "react";
 import "./App.css";
+
 const useStyles = makeStyles((theme) => ({
   searchBox: {
     display: "flex",
@@ -62,9 +59,6 @@ function SearchComponent({ setListUpdate }) {
           //In case something goes wrong
           console.log("Undefined Data");
         } else {
-          console.log(searchWord);
-          console.log("inside data retreive");
-          console.log(data);
           setSearchResult(data);
           const d = new Date().toLocaleString(); // 11/16/2015, 11:18:48 PM
           data.time = d;
@@ -83,7 +77,6 @@ function SearchComponent({ setListUpdate }) {
               setListUpdate(true);
             } else {
               const parsedObject = JSON.parse(localStorageObject);
-              console.log(parsedObject);
               const len = Object.keys(parsedObject).length;
               parsedObject["" + len] = data;
 
@@ -118,22 +111,13 @@ function SearchComponent({ setListUpdate }) {
         alignItems="center"
         justify="center"
       >
-      <FormControl fullWidth>
-        <InputLabel htmlFor="dna-textField-input">Enter Sequence Here</InputLabel>
-        <Input id="dna-textField-input" onChange={handleTextFieldChange}/>
-        {/* <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText> */}
-      </FormControl>
-
-        {/* <form noValidate autoComplete="off">
-          <TextField
-            id="dna-textField-input"
-            label="Enter Sequence Here"
-            onChange={handleTextFieldChange}
-            fullWidth="true"
-            size="medium"
-            inputProps={{ pattern: "[a-zA-Z]" }}
-          ></TextField>
-        </form> */}
+        <FormControl fullWidth>
+          <InputLabel htmlFor="dna-textField-input">
+            Enter Sequence Here
+          </InputLabel>
+          <Input id="dna-textField-input" onChange={handleTextFieldChange} />
+          {/* <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText> */}
+        </FormControl>
       </Grid>
       <Grid
         item
@@ -162,7 +146,7 @@ function SearchComponent({ setListUpdate }) {
         justify="center"
         alignItems="center"
         className={vanishText ? classes.stayHidden : classes.show}
-        style={{ marginTop: 10}}
+        style={{ marginTop: 10 }}
       >
         {searchResult === 0 ? (
           <Typography>Sorry we couldn't find a match! Try again!</Typography>

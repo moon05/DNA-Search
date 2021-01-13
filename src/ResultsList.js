@@ -1,7 +1,6 @@
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import times from "lodash/times";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import ResultsComponent from "./ResultsComponent";
 import ResultsListHeader from "./ResultsListHeader";
@@ -17,21 +16,16 @@ function ResultsList({ k }) {
   const [listData, setListData] = useState({});
   const [listLength, setListLength] = useState();
   const [resultComponentList, setResultComponentList] = useState([]);
-  
-  useEffect(()=> {
-  }, [resultComponentList])
-  
+
+  useEffect(() => {}, [resultComponentList]);
+
   useEffect(() => {
-    
-      setStoredData(window.localStorage.getItem("proteinSearchData"));
-      console.log("Done printing local Storage")
-    }, [k]);
+    setStoredData(window.localStorage.getItem("proteinSearchData"));
+  }, [k]);
 
   useEffect(() => {
     if (storedData !== null) {
       const parsedObject = JSON.parse(storedData);
-      console.log("Printing stored data where more is added")
-      console.log(parsedObject);
       const len = Object.keys(parsedObject).length;
       setListData(parsedObject);
 
@@ -40,14 +34,6 @@ function ResultsList({ k }) {
   }, [storedData]);
 
   useEffect(() => {
-    console.log("Printing stored data for check after")
-    const parsedObject = JSON.parse(storedData);
-    console.log(parsedObject);
-    console.log("Done")
-  }, [storedData]);
-
-  useEffect(() => {
-    console.log("ListData getting modified")
     let result = [];
     for (let i = listLength - 1; i >= 0; i--) {
       const value = listData["" + i];
@@ -62,7 +48,6 @@ function ResultsList({ k }) {
         />
       );
     }
-    console.log(result)
     setResultComponentList(result);
   }, [listData, listLength]);
 
@@ -77,7 +62,7 @@ function ResultsList({ k }) {
     >
       <Grid item xs={12}>
         <ResultsListHeader />
-        { resultComponentList }
+        {resultComponentList}
       </Grid>
       <Grid item xs={12}></Grid>
     </Grid>

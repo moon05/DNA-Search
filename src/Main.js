@@ -1,6 +1,6 @@
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./App.css";
 import ResultsList from "./ResultsList";
 import SearchComponent from "./SearchComponent";
@@ -19,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Main() {
-    const classes = useStyles();
+  const classes = useStyles();
   const [listUpdate, setListUpdate] = useState(false);
-  
+
   return (
     <Grid
       item
@@ -30,7 +30,7 @@ function Main() {
       direction="row"
       justify="center"
       alignItems="center"
-      style={{ marginTop: 20}}
+      style={{ marginTop: 20 }}
     >
       <Grid
         item
@@ -41,7 +41,7 @@ function Main() {
         alignItems="center"
       >
         <Grid item xs={12}>
-          <SearchComponent setListUpdate={setListUpdate}/>
+          <SearchComponent setListUpdate={setListUpdate} />
         </Grid>
       </Grid>
       <Grid
@@ -53,8 +53,7 @@ function Main() {
         alignItems="center"
       >
         <Grid item xs={12}>
-          <ResultsList k={listUpdate}/>
-
+          <ResultsList k={listUpdate} />
         </Grid>
       </Grid>
     </Grid>

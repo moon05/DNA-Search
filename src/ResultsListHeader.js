@@ -60,7 +60,7 @@ function ResultsListHeader() {
           <Typography>Protein Name</Typography>
         </Grid>
       </Grid>
-      <Divider style={{ marginBottom: 10}}/>
+      <Divider style={{ marginBottom: 10 }} />
     </Grid>
   );
 }
