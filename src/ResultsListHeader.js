@@ -27,7 +27,7 @@ function ResultsListHeader() {
           justify="center"
           alignItems="center"
         >
-          <Typography>status</Typography>
+          <Typography><strong>Status</strong></Typography>
         </Grid>
         <Grid
           item
@@ -37,7 +37,7 @@ function ResultsListHeader() {
           justify="center"
           alignItems="center"
         >
-          <Typography>time</Typography>
+          <Typography><strong>Time</strong></Typography>
         </Grid>
         <Grid
           item
@@ -47,7 +47,7 @@ function ResultsListHeader() {
           justify="center"
           alignItems="center"
         >
-          <Typography>Location</Typography>
+          <Typography><strong>Location</strong></Typography>
         </Grid>
         <Grid
           item
@@ -57,7 +57,7 @@ function ResultsListHeader() {
           justify="center"
           alignItems="center"
         >
-          <Typography>Protein Name</Typography>
+          <Typography><strong>Protein Name</strong></Typography>
         </Grid>
       </Grid>
       <Divider style={{ marginBottom: 10 }} />
