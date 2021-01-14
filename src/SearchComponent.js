@@ -2,15 +2,15 @@ import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
-import FormHelperText from '@material-ui/core/FormHelperText';
-
 import "./App.css";
 import gLogo from "./ginkgo.svg";
+
 
 const useStyles = makeStyles((theme) => ({
   searchBox: {
@@ -35,7 +35,6 @@ function SearchComponent({ setListUpdate }) {
   const [searchResult, setSearchResult] = useState({});
   const [vanishText, setVanishText] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [isInputValid, setIsInputValid] = useState(true);
   const [isError, setIsError] = useState(false);
   const [inputHelperText, setInputHelperText] = useState("");
 
@@ -57,6 +56,13 @@ function SearchComponent({ setListUpdate }) {
   const fetchURL = `http://167.99.150.45:3040/dnatoprotein/relax?q=${encodeURIComponent(
     searchWord
   )}`;
+
+  //initially I was going with this approach for validation
+  //it works almost fine
+  //with this approach if an invalid charactere were inserted
+  //it will certainly show error but upon deleting the invalid
+  //characters the error won't go away, so I ended going with
+  // the regex based approach instead
 
   // function allowOnlyAlphabet(e) {
   //   const charCode = e.key;
@@ -80,7 +86,7 @@ function SearchComponent({ setListUpdate }) {
   // }
 
   function handleTextFieldChange(e) {
-    let invalidLettersInInput = (! /^[ACGTUacgtu]+$/.test(e.target.value));
+    let invalidLettersInInput = !/^[ACGTUacgtu ]+$/.test(e.target.value);
     if (e.target.value === "") {
       setIsError(false);
       setButtonDisabled(true);
@@ -163,7 +169,6 @@ function SearchComponent({ setListUpdate }) {
           backgroundColor: "transparent",
         }}
       >
-        {/* <img src={gLogo} alt="ginkgo_logo"/> */}
         <Grid item container style={{ marginLeft: 30 }}>
           <Grid
             item
@@ -172,9 +177,8 @@ function SearchComponent({ setListUpdate }) {
             justify="flex-start"
             alignItems="center"
           >
-            <img src={gLogo} alt="ginkgo" size="large" height="100px" />
+            <img src={gLogo} alt="ginkgo" height="100px" />
             <Typography variant="h5" style={{ marginLeft: 10 }}>
-              {" "}
               Ginkgo Bioworks DNA Search
             </Typography>
           </Grid>
@@ -191,11 +195,14 @@ function SearchComponent({ setListUpdate }) {
               <InputLabel htmlFor="dna-textField-input">
                 Enter Sequence Here
               </InputLabel>
-              <Input error={isError}
+              <Input
+                error={isError}
                 id="dna-textField-input"
                 onChange={handleTextFieldChange}
               />
-              <FormHelperText id="my-helper-text">{inputHelperText}</FormHelperText>
+              <FormHelperText id="my-helper-text">
+                {inputHelperText}
+              </FormHelperText>
             </FormControl>
           </Grid>
           <Grid
@@ -235,7 +242,7 @@ function SearchComponent({ setListUpdate }) {
             ) : (
               <Typography align="justify">
                 The DNA Sequence you provided was found at location{" "}
-                <strong>{searchResult.match_loc}</strong> in the{" "}
+                <strong>{searchResult.match_loc}</strong> in the {" "}
                 <strong>{searchResult.name}</strong>
               </Typography>
             )}
