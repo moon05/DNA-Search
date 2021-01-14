@@ -53,7 +53,7 @@ function SearchComponent({ setListUpdate }) {
   // My backend stuff is hosted in a droplet in DigitalOcean and turns out certbot doesn't
   // let you have https over an IP address, hence I am going with http. Similary as you will
   // see in the Heroku app it's also http since they don't mix match
-  const fetchURL = `http://167.99.150.45:3040/dnatoprotein/relax?q=${encodeURIComponent(
+  const fetchURL = `http://167.99.150.45:3040/dnatoprotein/find?q=${encodeURIComponent(
     searchWord
   )}`;
 
